@@ -11,38 +11,56 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode *ans=new ListNode(); // create a new list as ans 
-        ListNode *head=ans; // head pointing to the address of ans 
-        while(list1&& list2) 
+    ListNode *first =list1;
+    ListNode *second=list2;
+    ListNode *head, *last;
+                if(list1 == NULL )
         {
-            if( list1->val <= list2->val) // if elements of list one is small then print list 1
-            {
-                
-                ans->next=new ListNode(list1->val);
-                list1=list1->next; // list 1 next element check
-        
-            }
-            else                    // if elements of list two is small print list  2 
-            {
-              ans->next=new ListNode(list2->val);
-                list2=list2->next;            // list 2 next element check
-                
-            }
-            ans=ans->next;   // ans ko next kar do
+            return list2;
         }
-        while(list1!=NULL) // if list 1 doesn't end then print rest elemnets in list 1
+        else if(list2==NULL){
+            return list1;
+        }
+    
+
+        else if(first->val<second->val)
         {
-            ans->next=new ListNode(list1->val);
-            list1=list1->next; // list 1 ko aage 
-            ans=ans->next; // ans ko aage 
-}
-        while(list2!=NULL) //  same for list 2
+         last=head=first;
+            first=first->next;
+            last->next=NULL;
+        }
+        else
         {
-            ans->next=new ListNode(list2->val);
-            list2=list2->next;
-            ans=ans->next;
+          last=head=second;
+            second=second->next;
+            last->next=NULL;
 }
-        return head->next; // head next cuz ans next se elements store hue hai :)))))
+        while(first && second)
+        {
+            if(first->val<second->val)
+            {
+             last->next=first;
+                last=first;
+                first=first->next;
+                last->next=NULL;
+            }
+            else
+            {
+                last->next=second;
+                last=second;
+                second=second->next;
+                last->next=NULL;
+            }
         
+        }
+        if(first)
+        {
+            last->next=first;
+        }
+        else
+        {
+            last->next=second;
+}
+        return head;
     }
 };
