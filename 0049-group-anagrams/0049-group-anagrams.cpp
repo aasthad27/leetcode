@@ -1,19 +1,18 @@
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        int n=strs.size();
-    string temp;
-        map<string,vector<string> >mp;
-        for(int i=0;i<n;i++)
-        {
-            temp=strs[i];
-            sort(strs[i].begin(),strs[i].end());
-            mp[strs[i]].push_back(temp);
-}
         vector<vector<string>>ans;
-        for(auto it=mp.begin();it!=mp.end();it++)
+        map<string,vector<string>>m;
+        
+        for(auto s:strs) // we are using sorted string as key ans the initial string as value 
         {
-            ans.push_back(it->second);
+            string st=s;
+            sort(s.begin(),s.end());
+            m[s].push_back(st); // key->sorted ,value->initial
+        }
+        for(auto it =m.begin();it!=m.end();it++)
+        {
+            ans.push_back(it->second); 
         }
         return ans;
     }
