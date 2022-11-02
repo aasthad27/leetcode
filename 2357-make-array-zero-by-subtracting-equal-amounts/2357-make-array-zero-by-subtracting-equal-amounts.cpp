@@ -1,22 +1,12 @@
-class Solution {                                       // brute force
+class Solution {                                       // using set -->unique non zero numbers==>numbers of operations
 public:
     int minimumOperations(vector<int>& nums) {
-        int store,op=0;
-        sort(nums.begin(),nums.end());
-        for(int i=0;i<nums.size();i++)
+    set<int>s;
+        for(auto i:nums)
         {
-            if(nums[i]>0)
-            {
-                store=nums[i];
-                op++;
-            
-            for(int j=i;j<nums.size();j++)
-            {
-                nums[j]-=store;
-                
-            }
-            }
+            if(i!=0)
+                s.insert(i);
         }
-        return op;
+        return s.size();
     }
 };
