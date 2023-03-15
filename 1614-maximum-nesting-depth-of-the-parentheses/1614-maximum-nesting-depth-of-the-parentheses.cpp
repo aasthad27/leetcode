@@ -1,8 +1,6 @@
 class Solution {
 public:
    int maxDepth(string s) {
-       // if(s.length()==1 || s.length()==0)
-       //     return 0;
         stack<char>st;
         int ct=0;
         int max=0;
@@ -10,7 +8,7 @@ public:
             if(s[i]=='(') {
                 st.push(s[i]);
                 ct++;
-            if (ct > max) max = ct;
+            // if (ct > max) max = ct;
             }
             else if(s[i]==')') {
                 if(!st.empty()){
@@ -20,7 +18,7 @@ public:
           
             }
             
-
+          if (ct > max) max = ct;
         }
         return max;
     }
