@@ -7,7 +7,7 @@ public:
         for(int i=0;i<n;i++)
         {
             sum+=nums[i];
-            if(sum > (long) mid*(i+1))
+            if(sum >(long) mid*(i+1))
                 return false;
           
         }
