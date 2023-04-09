@@ -1,38 +1,36 @@
 class Solution {
 public:
-    bool arrayIsPossibleForY(vector<int>& nums,int mid)
-    { 
-        int n=nums.size();
+    bool isValid(vector<int>&nums,int mid)
+    {
         long sum=0;
-        for(int i=0;i<n;i++)
-        {
-            sum+=nums[i];
-            if(sum >(long) mid*(i+1))
-                return false;
-          
-        }
-        return true;
+     for(int i=0;i<nums.size();i++)
+     {
+        sum+=nums[i];
+         if(sum>(long) mid *(i+1))
+             return false;
+     }
+    return true;
     }
     int minimizeArrayValue(vector<int>& nums) {
-        int maxi=INT_MIN;
-        int l=0;
+     int maxi=INT_MIN;
+        int ans=-1;
         for(int i=0;i<nums.size();i++)
         {
-            maxi=max(maxi,nums[i]);
+            maxi=max(nums[i],maxi);
         }
+        int l=0;
         int r=maxi;
-        int ans=0;
         while(l<=r)
         {
             int mid=l+(r-l)/2;
-            if(arrayIsPossibleForY(nums,mid)) // valid
+            if(isValid(nums,mid))  //true
             {
-                ans=mid;                             // check left -->for smaller number 
-                r=mid-1;
+                 r=mid-1;
+                ans=mid;
             }
             else
             {
-                l=mid+1;
+              l=mid+1;  
             }
         }
         return ans;
