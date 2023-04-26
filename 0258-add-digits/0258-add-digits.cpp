@@ -1,6 +1,8 @@
 class Solution {
 public:
     int addDigits(int num) {
-     return 1+(num-1)%9;
+      if(num<=9)
+          return num;
+        return addDigits(num%10+addDigits(num/10));
     }
 };
