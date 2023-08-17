@@ -31,45 +31,33 @@ int main() {
 
 vector<long long> printFirstNegativeInteger(long long int A[],
                                              long long int N, long long int K) {
-     deque<int>dq;
-     vector<long long>ans;
-     for(int i=0;i<K;i++)
-     {
-        if(A[i]<0)
+              
+        deque<int>dq;
+        int i=0;
+        int j=0;
+        vector<long long>ans;
+        while(j<N)
         {
-            dq.push_back(i);
+            
+          if(A[j]<0)
+          dq.push_back(A[j]);
+          
+          if(j-i+1<K)
+          j++;
+          else if(j-i+1==K) // hit the window size 
+          {
+              if(!dq.empty())
+              {
+              ans.push_back(dq.front());
+              }// feont element 
+              else
+              ans.push_back(0);
+              if(A[i]==dq.front()) // if currwnt i is present in dq front 
+              dq.pop_front();
+              i++;
+              j++;
+              
+          }
         }
-        
-     }
-     if(dq.size()>0)
-     {
-         ans.push_back(A[dq.front()]);
-     }
-      else
-    {
-         ans.push_back(0);
-    }
-    
-                                           
-    for(int i=K;i<N;i++)
-    {
-        if(!dq.empty()&&i-dq.front()>=K)
-        {
-            dq.pop_front();
-        }
-         if(A[i]<0)
-         {
-             dq.push_back(i);
-         }
-         if(dq.size()>0)
-         {
-             ans.push_back(A[dq.front()]);
-         }
-         else
-         {
-             ans.push_back(0);
-         }
-    }
-    return ans;
-     
+      return ans;
  }
