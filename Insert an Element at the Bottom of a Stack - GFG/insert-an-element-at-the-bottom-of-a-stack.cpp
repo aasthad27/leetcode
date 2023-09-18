@@ -10,22 +10,22 @@ using namespace std;
 
 class Solution{
 public:
-  
-    void solve(stack<int> &St,int X)
+void solve(stack<int>&st,int X)
+{
+    // base case
+    if(st.empty())
     {
-      if(St.empty())
-      {
-          St.push(X);
-          return ;
-      }
-      int num=St.top();
-      St.pop();
-      solve(St,X);
-      St.push(num);
+        st.push(X);
+        return ;
+    }
+    int num=st.top();
+    st.pop();
+    solve(st,X);
+    st.push(num);
 }
     stack<int> insertAtBottom(stack<int> St,int X){
-      solve(St,X);
-      return St;
+        solve(St,X);
+        return St;
     }
 };
 
